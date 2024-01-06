@@ -1,0 +1,143 @@
+Make Swap 6GB
+Setting up swapspace version 1, size = 6 GiB (6442446848 bytes)
+no label, UUID=ddd8b0b2-268a-41ea-b056-181e24f8294d
+Container discoursio-api is running
+/var/lib/dokku/data/storage/discoursio-api/migration/dump exist (^.-)
+/var/lib/dokku/data/storage/discoursio-api/migration/data exist (-.^)
+DB postgres is set
+DUMP_PATH and DATA_PATH exist in discoursio-api config
+Untar Bson from mongoDB
+MODE: BSON
+[migration] unpack dump/discours/*.bson to migration/data/*.json
+[migration] bson2json for content_items
+[migration] bson2json for content_item_categories
+[migration] bson2json for tags
+[migration] bson2json for email_subscriptions
+[migration] bson2json for users
+[migration] bson2json for comments
+[migration] bson2json for remarks
+Create NEW postgres DB
+       Waiting for container to be ready
+       Creating container database
+       Securing connection to database
+=====> Postgres container created: discoursio-db-2024-01-06
+=====> discoursio-db-2024-01-06 postgres service information
+       Config dir:          /var/lib/dokku/services/postgres/discoursio-db-2024-01-06/data
+       Config options:                               
+       Data dir:            /var/lib/dokku/services/postgres/discoursio-db-2024-01-06/data
+       Dsn:                 postgres://postgres:db16b4369c773f4dcf65a1e7f9d8c638@dokku-postgres-discoursio-db-2024-01-06:5432/discoursio_db_2024_01_06
+       Exposed ports:       -                        
+       Id:                  e52edf4ec21888a97a715fe72ac207df234711e6e4b756a7893b6500212cca8f
+       Internal ip:         172.17.0.27              
+       Links:               -                        
+       Service root:        /var/lib/dokku/services/postgres/discoursio-db-2024-01-06
+       Status:              running                  
+       Version:             postgres:14.5            
+postgresql://postgres:db16b4369c773f4dcf65a1e7f9d8c638@dokku-postgres-discoursio-db-2024-01-06:5432/discoursio_db_2024_01_06
+-----> Setting config vars
+       MIGRATION_DATABASE_URL:  postgresql://postgres:db16b4369c773f4dcf65a1e7f9d8c638@dokku-postgres-discoursio-db-2024-01-06:5432/discoursio_db_2024_01_06
+Waiting for 120 seconds...
+(^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') (^.^') MODE: MIGRATE
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 145, in __init__
+    self._dbapi_connection = engine.raw_connection()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3292, in raw_connection
+    return self.pool.connect()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 452, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 1269, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 716, in checkout
+    rec = pool._do_get()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/impl.py", line 169, in _do_get
+    with util.safe_reraise():
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/impl.py", line 167, in _do_get
+    return self._create_connection()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 393, in _create_connection
+    return _ConnectionRecord(self)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 678, in __init__
+    self.__connect()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 902, in __connect
+    with util.safe_reraise():
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 898, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/create.py", line 637, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 616, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)
+  File "/usr/local/lib/python3.10/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: could not translate host name "dokku-postgres-discoursio-db-2024-01-06" to address: Name or service not known
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/src/app/server.py", line 87, in <module>
+    process()
+  File "/usr/src/app/migration/__init__.py", line 275, in process
+    loop.run_until_complete(handling_migration())
+  File "/usr/local/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "/usr/src/app/migration/__init__.py", line 269, in handling_migration
+    init_tables()
+  File "/usr/src/app/orm/__init__.py", line 12, in init_tables
+    Base.metadata.create_all(engine)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/schema.py", line 5828, in create_all
+    bind._run_ddl_visitor(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3242, in _run_ddl_visitor
+    with self.begin() as conn:
+  File "/usr/local/lib/python3.10/contextlib.py", line 135, in __enter__
+    return next(self.gen)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3232, in begin
+    with self.connect() as conn:
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3268, in connect
+    return self._connection_cls(self)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 147, in __init__
+    Connection._handle_dbapi_exception_noconnection(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2430, in _handle_dbapi_exception_noconnection
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 145, in __init__
+    self._dbapi_connection = engine.raw_connection()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3292, in raw_connection
+    return self.pool.connect()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 452, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 1269, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 716, in checkout
+    rec = pool._do_get()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/impl.py", line 169, in _do_get
+    with util.safe_reraise():
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/impl.py", line 167, in _do_get
+    return self._create_connection()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 393, in _create_connection
+    return _ConnectionRecord(self)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 678, in __init__
+    self.__connect()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 902, in __connect
+    with util.safe_reraise():
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 898, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/create.py", line 637, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 616, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)
+  File "/usr/local/lib/python3.10/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) could not translate host name "dokku-postgres-discoursio-db-2024-01-06" to address: Name or service not known
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+MIGRATE move didn't work well! ERROR!
+remove old DB
+make swap 2gb again
+Setting up swapspace version 1, size = 2 GiB (2147479552 bytes)
+no label, UUID=835b4655-518d-46d0-9aa2-afe77dffcf9e
