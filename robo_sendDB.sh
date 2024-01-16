@@ -5,7 +5,7 @@ export PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
 APP="discoursio-api"
 SSH_KEY="/root/.ssh/id_rsa"
 YMD=$(date "+%Y-%m-%d")
-DUMP_PATH="/var/lib/dokku/data/storage/core/migration/dump/"
+DUMP_PATH="/var/lib/dokku/data/storage/core/dump/"
 DATA_PATH="/var/lib/dokku/data/storage/discoursio-api/migration/data"
 SCRIPT_PATH="/root/robo_script"
 MONGO_DB_PATH="/var/backups/mongodb"
@@ -32,7 +32,12 @@ scp -i "$SSH_KEY" -r "$LAST_DB_MONGO" "root@$NEW_HOST:$NEW_PATH_MONGO"
 
 put_mongo_dump() {
 echo "put mongo.dump for core migration"
+# need to remove old dump, if exist
+if [ -d "$DUMP_PATH" ]; then
+rm -r "$DUMP_PATH"*
+fi
 cp "$LAST_DB_MONGO" "$DUMP_PATH"
+chown -R 32767:32767 "$DUMP_PATH"
 }
 
 #send_postgres_dump
